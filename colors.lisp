@@ -10,10 +10,7 @@
       (subseq str pos))))
 
 (macrolet ((frob-colors ()
-             (let ((file (merge-pathnames
-                          "rgb.txt"
-                          (asdf:component-pathname
-                           (asdf:find-system "opticl")))))
+             (let ((file (asdf:system-relative-pathname "opticl" "rgb.txt")))
                (with-open-file (stream file)
                  `(progn
                     ,@(loop for r = (read stream nil nil)
